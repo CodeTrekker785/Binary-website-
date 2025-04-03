@@ -1,2 +1,2 @@
-# Binary-website-
+# Binary-Option-
 Options Mini 
