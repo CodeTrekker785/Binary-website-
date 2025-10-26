@@ -1,125 +1,114 @@
+/* General styles */
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    background: #1b1b1b;
-    color: #fff;
+    transition: background 0.3s, color 0.3s;
 }
 
-.app-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
-}
+/* Themes */
+body.light-theme { background: #f5f5f5; color: #333; }
+body.dark-theme { background: #1b1b1b; color: #fff; }
 
-header {
-    text-align: center;
+/* Navigation */
+nav {
+    display: flex;
+    gap: 10px;
     background: #ff6600;
     padding: 1rem;
-    border-radius: 8px;
+    justify-content: center;
+    border-radius: 0 0 8px 8px;
+}
+nav button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.dashboard {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-    gap: 1rem;
-}
-
-.balance-card, .pl-card {
-    background: #2b2b2b;
+/* Pages */
+.page {
+    max-width: 900px;
+    margin: 1rem auto;
     padding: 1rem;
-    flex: 1;
-    text-align: center;
     border-radius: 8px;
-    box-shadow: 0 0 10px #ff6600;
+}
+input {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+button {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #ff6600;
+    color: white;
+    font-weight: bold;
 }
 
-.market {
-    margin: 2rem 0;
+/* Cards */
+.cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.card {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #333;
+    text-align: center;
 }
 
+/* Crypto cards */
 .crypto-cards {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
 }
-
 .crypto-card {
     background: #2b2b2b;
     padding: 1rem;
     border-radius: 8px;
     flex: 1 1 200px;
     text-align: center;
-    box-shadow: 0 0 10px #333;
 }
-
 .crypto-card button {
-    padding: 0.5rem 1rem;
     margin: 0.3rem;
-    border: none;
+    padding: 0.5rem 1rem;
     border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+    border: none;
 }
+.buy-btn { background: #4caf50; color: #fff; }
+.sell-btn { background: #f44336; color: #fff; }
 
-.buy-btn {
-    background: #4caf50;
-    color: white;
-}
-
-.sell-btn {
-    background: #f44336;
-    color: white;
-}
-
-.wallet {
+/* Wallet styles */
+.wallet-info {
     background: #2b2b2b;
     padding: 1rem;
     border-radius: 8px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
+.wallet-info p { word-break: break-all; }
+.wallet-info button { background: #4caf50; color: white; margin-top: 0.5rem; }
+.wallet-actions input { width: calc(100% - 10px); }
+.wallet-actions button { margin-right: 0.5rem; }
 
-.wallet input {
-    padding: 0.5rem;
-    width: 150px;
-    margin-right: 0.5rem;
-    border-radius: 4px;
-    border: none;
-}
-
-.wallet button {
-    padding: 0.5rem 1rem;
-    margin: 0.3rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background: #ff6600;
-    color: white;
+/* Transaction animation */
+.transaction {
+    position: fixed;
     font-weight: bold;
+    font-size: 1.2rem;
+    z-index: 9999;
+    pointer-events: none;
 }
-
-.contact {
-    background: #2b2b2b;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-.contact input {
-    padding: 0.5rem;
-    width: calc(100% - 10px);
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    border: none;
-}
-
-.contact button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    background: #ff6600;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
+.transaction.deposit { color: #4caf50; }
+.transaction.withdraw { color: #f44336; }
