@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1b1b1b;
+    color: #fff;
+}
+
+.app-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header {
+    text-align: center;
+    background: #ff6600;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    gap: 1rem;
+}
+
+.balance-card, .pl-card {
+    background: #2b2b2b;
+    padding: 1rem;
+    flex: 1;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ff6600;
+}
+
+.market {
+    margin: 2rem 0;
+}
+
+.crypto-cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.crypto-card {
+    background: #2b2b2b;
+    padding: 1rem;
+    border-radius: 8px;
+    flex: 1 1 200px;
+    text-align: center;
+    box-shadow: 0 0 10px #333;
+}
+
+.crypto-card button {
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.buy-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.sell-btn {
+    background: #f44336;
+    color: white;
+}
+
+.wallet {
+    background: #2b2b2b;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.wallet input {
+    padding: 0.5rem;
+    width: 150px;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    border: none;
+}
+
+.wallet button {
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #ff6600;
+    color: white;
+    font-weight: bold;
+}
