@@ -66,7 +66,7 @@ function sell(coin, price) {
     if(portfolio[coin] >= amount) {
         balance += amount * price;
         portfolio[coin] -= amount;
-        totalPL += amount * price; // simplified P/L simulation
+        totalPL += amount * price;
         updateDashboard();
         alert(`Sold ${amount} ${coin}`);
     } else {
