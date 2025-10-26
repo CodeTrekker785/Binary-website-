@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="app-container">
+
     <header>
         <h1>Crypto Options Simulator</h1>
     </header>
@@ -34,6 +35,19 @@
         <button onclick="deposit()">Deposit</button>
         <button onclick="withdraw()">Withdraw</button>
     </div>
+
+    <div class="contact">
+        <h2>Sign Up / Contact</h2>
+        <form name="crypto-form" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="crypto-form">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
 </div>
 
 <script src="app.js"></script>
