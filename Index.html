@@ -28,7 +28,7 @@
     <h2>Login</h2>
     <input type="email" id="login-email" placeholder="Email">
     <input type="password" id="login-password" placeholder="Password">
-    <button onclick="login()">Login</button>
+    <button id="login-btn">Login</button>
 </div>
 
 <!-- Sign Up Page -->
@@ -37,7 +37,7 @@
     <input type="text" id="signup-name" placeholder="Name">
     <input type="email" id="signup-email" placeholder="Email">
     <input type="password" id="signup-password" placeholder="Password">
-    <button onclick="signup()">Sign Up</button>
+    <button id="signup-btn">Sign Up</button>
 </div>
 
 <!-- Dashboard -->
@@ -82,5 +82,10 @@
 
 <script src="themes.js"></script>
 <script src="app.js"></script>
+<script>
+    // Attach event listeners after elements exist
+    document.getElementById('login-btn').addEventListener('click', login);
+    document.getElementById('signup-btn').addEventListener('click', signup);
+</script>
 </body>
 </html>
