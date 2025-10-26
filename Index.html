@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crypto & Forex Trading</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Options Simulator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>💹 Crypto & Forex Trading</h1>
-    <nav>
-      <a href="#crypto">Crypto</a>
-      <a href="#forex">Forex</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
+<div class="app-container">
+    <header>
+        <h1>Crypto Options Simulator</h1>
+    </header>
 
-  <section id="hero">
-    <h2>Trade Smarter. Trade Faster.</h2>
-    <p>Get real-time crypto and forex prices with live updates.</p>
-  </section>
-
-  <section id="crypto">
-    <h2>🔥 Live Crypto Prices</h2>
-    <div id="crypto-prices" class="data-container">
-      <p>Loading crypto data...</p>
+    <div class="dashboard">
+        <div class="balance-card">
+            <h2>Balance</h2>
+            <p>$<span id="balance">1000</span></p>
+        </div>
+        <div class="pl-card">
+            <h2>Profit / Loss</h2>
+            <p>$<span id="pl">0</span></p>
+        </div>
     </div>
-  </section>
 
-  <section id="forex">
-    <h2>💱 Forex Exchange Rates</h2>
-    <div id="forex-rates" class="data-container">
-      <p>Loading forex data...</p>
+    <div class="market">
+        <h2>Live Market</h2>
+        <div id="crypto-cards" class="crypto-cards"></div>
     </div>
-  </section>
 
-  <section id="about">
-    <h2>About This Platform</h2>
-    <p>This website provides live crypto and forex updates using public APIs. 
-       Designed for traders who want fast, reliable market insights.</p>
-  </section>
+    <div class="wallet">
+        <h2>Deposit / Withdraw</h2>
+        <input type="number" id="amount" placeholder="Amount">
+        <button onclick="deposit()">Deposit</button>
+        <button onclick="withdraw()">Withdraw</button>
+    </div>
+</div>
 
-  <footer>
-    <p>© 2025 Crypto & Forex Trading. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
