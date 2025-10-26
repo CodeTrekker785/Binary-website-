@@ -3,53 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Options Simulator</title>
+<title>Crypto Trading Platform</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-<div class="app-container">
+<body class="light-theme">
 
-    <header>
-        <h1>Crypto Options Simulator</h1>
-    </header>
+<!-- Theme Switch -->
+<button id="theme-switch">Switch Theme</button>
 
-    <div class="dashboard">
-        <div class="balance-card">
-            <h2>Balance</h2>
-            <p>$<span id="balance">1000</span></p>
-        </div>
-        <div class="pl-card">
-            <h2>Profit / Loss</h2>
-            <p>$<span id="pl">0</span></p>
-        </div>
+<!-- Navigation -->
+<nav>
+    <button onclick="showPage('login')">Login</button>
+    <button onclick="showPage('signup')">Sign Up</button>
+    <button onclick="showPage('dashboard')">Dashboard</button>
+    <button onclick="showPage('deposit')">Deposit / Withdraw</button>
+    <button onclick="showPage('profile')">Profile</button>
+</nav>
+
+<!-- Pages -->
+
+<!-- Login Page -->
+<div id="login" class="page">
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- Sign Up Page -->
+<div id="signup" class="page" style="display:none;">
+    <h2>Sign Up</h2>
+    <input type="text" id="signup-name" placeholder="Name">
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signup()">Sign Up</button>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" class="page" style="display:none;">
+    <h2>Dashboard</h2>
+    <div class="cards">
+        <div class="card balance-card">Balance: $<span id="balance">1000</span></div>
+        <div class="card pl-card">Profit/Loss: $<span id="pl">0</span></div>
     </div>
 
-    <div class="market">
-        <h2>Live Market</h2>
-        <div id="crypto-cards" class="crypto-cards"></div>
+    <h3>Live Market Charts</h3>
+    <canvas id="crypto-chart" height="150"></canvas>
+
+    <h3>Live Trading</h3>
+    <div id="crypto-cards" class="crypto-cards"></div>
+</div>
+
+<!-- Deposit / Withdraw -->
+<div id="deposit" class="page" style="display:none;">
+    <h2>Deposit / Withdraw</h2>
+
+    <div class="wallet-info">
+        <p><strong>Deposit Wallet Address:</strong></p>
+        <p id="wallet-address">UQCZYXifFRaaBrX0DQImP6p8melcCRGvtPXMEgTgD2XbMDP9</p>
+        <button onclick="copyWallet()">Copy Address</button>
     </div>
 
-    <div class="wallet">
-        <h2>Deposit / Withdraw</h2>
+    <div class="wallet-actions">
         <input type="number" id="amount" placeholder="Amount">
         <button onclick="deposit()">Deposit</button>
         <button onclick="withdraw()">Withdraw</button>
     </div>
-
-    <div class="contact">
-        <h2>Sign Up / Contact</h2>
-        <form name="crypto-form" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="crypto-form">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" required>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
 </div>
 
+<!-- Profile -->
+<div id="profile" class="page" style="display:none;">
+    <h2>Profile Settings</h2>
+    <p>Name: <span id="profile-name">User</span></p>
+    <p>Email: <span id="profile-email">user@example.com</span></p>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script src="themes.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
