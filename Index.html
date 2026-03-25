@@ -1,91 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Trading Platform</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ KellyWise | Pro Mobile Mixer</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --deck-bg: #1a1a1a;
+            --accent: #00f2ff;
+            --green: #39ff14;
+            --red: #ff3131;
+        }
+
+        body {
+            background: var(--bg);
+            color: #eee;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            background: #000;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        .mixer-layout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .deck {
+            background: var(--deck-bg);
+            border-radius: 12px;
+            padding: 15px;
+            flex: 1;
+            min-width: 320px;
+            border: 1px solid #333;
+        }
+
+        .deck h2 { color: var(--accent); margin-top: 0; font-size: 14px; }
+
+        input[type="file"] {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .v-slider {
+            appearance: slider-vertical;
+            width: 15px;
+            height: 100px;
+        }
+
+        .btn {
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .play-btn { background: var(--green); color: #000; }
+        .stop-btn { background: var(--red); color: #fff; }
+
+        .mixer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #111;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 180px;
+        }
+
+        .knob-stack { text-align: center; margin-bottom: 20px; }
+        .knob-stack label { display: block; font-size: 10px; margin-bottom: 5px; }
+
+        .crossfader-container { margin-top: 20px; text-align: center; width: 100%; }
+        .crossfader { width: 100%; height: 30px; }
+
+        .sample-bank {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .sample-pad {
+            background: #222;
+            border: 1px solid #444;
+            color: var(--accent);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .sample-pad:active { background: var(--accent); color: #000; }
+
+        label { font-size: 11px; color: #888; }
+    </style>
 </head>
-<body class="light-theme">
+<body>
 
-<!-- Theme Switch -->
-<button id="theme-switch">Switch Theme</button>
+<header>
+    <h1 style="margin:0">DJ KELLYWISE</h1>
+</header>
 
-<!-- Navigation -->
-<nav>
-    <button onclick="showPage('login')">Login</button>
-    <button onclick="showPage('signup')">Sign Up</button>
-    <button onclick="showPage('dashboard')">Dashboard</button>
-    <button onclick="showPage('deposit')">Deposit / Withdraw</button>
-    <button onclick="showPage('profile')">Profile</button>
-</nav>
-
-<!-- Pages -->
-
-<!-- Login Page -->
-<div id="login" class="page">
-    <h2>Login</h2>
-    <input type="email" id="login-email" placeholder="Email">
-    <input type="password" id="login-password" placeholder="Password">
-    <button id="login-btn">Login</button>
-</div>
-
-<!-- Sign Up Page -->
-<div id="signup" class="page" style="display:none;">
-    <h2>Sign Up</h2>
-    <input type="text" id="signup-name" placeholder="Name">
-    <input type="email" id="signup-email" placeholder="Email">
-    <input type="password" id="signup-password" placeholder="Password">
-    <button id="signup-btn">Sign Up</button>
-</div>
-
-<!-- Dashboard -->
-<div id="dashboard" class="page" style="display:none;">
-    <h2>Dashboard</h2>
-    <div class="cards">
-        <div class="card balance-card">Balance: $<span id="balance">1000</span></div>
-        <div class="card pl-card">Profit/Loss: $<span id="pl">0</span></div>
+<div class="mixer-layout">
+    <div class="deck">
+        <h2>DECK A</h2>
+        <input type="file" id="file1" accept="audio/*">
+        <div class="controls">
+            <button class="btn play-btn" id="btn1">PLAY</button>
+            <div class="knob-stack">
+                <label>PITCH</label>
+                <input type="range" class="v-slider" id="pitch1" min="0.8" max="1.2" step="0.01" value="1">
+            </div>
+            <div class="knob-stack">
+                <label>GAIN</label>
+                <input type="range" class="v-slider" id="vol1" min="0" max="1" step="0.01" value="0.8">
+            </div>
+        </div>
     </div>
 
-    <h3>Live Market Charts</h3>
-    <canvas id="crypto-chart" height="150"></canvas>
-
-    <h3>Live Trading</h3>
-    <div id="crypto-cards" class="crypto-cards"></div>
-</div>
-
-<!-- Deposit / Withdraw -->
-<div id="deposit" class="page" style="display:none;">
-    <h2>Deposit / Withdraw</h2>
-
-    <div class="wallet-info">
-        <p><strong>Deposit Wallet Address:</strong></p>
-        <p id="wallet-address">UQCZYXifFRaaBrX0DQImP6p8melcCRGvtPXMEgTgD2XbMDP9</p>
-        <button onclick="copyWallet()">Copy Address</button>
+    <div class="mixer-center">
+        <div class="knob-stack">
+            <label>HI-EQ</label>
+            <input type="range" id="eqHi" min="-20" max="10" value="0">
+            <label>MID</label>
+            <input type="range" id="eqMid" min="-20" max="10" value="0">
+            <label>LOW</label>
+            <input type="range" id="eqLow" min="-20" max="10" value="0">
+        </div>
+        
+        <div class="crossfader-container">
+            <label>CROSSFADER</label><br>
+            <input type="range" class="crossfader" id="xfader" min="0" max="1" step="0.01" value="0.5">
+        </div>
     </div>
 
-    <div class="wallet-actions">
-        <input type="number" id="amount" placeholder="Amount">
-        <button onclick="deposit()">Deposit</button>
-        <button onclick="withdraw()">Withdraw</button>
+    <div class="deck">
+        <h2>DECK B</h2>
+        <input type="file" id="file2" accept="audio/*">
+        <div class="controls">
+            <button class="btn play-btn" id="btn2">PLAY</button>
+            <div class="knob-stack">
+                <label>PITCH</label>
+                <input type="range" class="v-slider" id="pitch2" min="0.8" max="1.2" step="0.01" value="1">
+            </div>
+            <div class="knob-stack">
+                <label>GAIN</label>
+                <input type="range" class="v-slider" id="vol2" min="0" max="1" step="0.01" value="0.8">
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Profile -->
-<div id="profile" class="page" style="display:none;">
-    <h2>Profile Settings</h2>
-    <p>Name: <span id="profile-name">User</span></p>
-    <p>Email: <span id="profile-email">user@example.com</span></p>
-    <button onclick="logout()">Logout</button>
+<div class="sample-bank">
+    <button class="sample-pad" onclick="beep(880, 'sine')">AIRHORN</button>
+    <button class="sample-pad" onclick="beep(110, 'triangle')">KICK</button>
+    <button class="sample-pad" onclick="beep(440, 'sawtooth')">SNARE</button>
+    <button class="sample-pad" onclick="beep(220, 'square')">YEAH!</button>
+    <button class="sample-pad" onclick="beep(660, 'sine')">RISER</button>
+    <button class="sample-pad" onclick="beep(55, 'sine')">DROP</button>
 </div>
 
-<script src="themes.js"></script>
-<script src="app.js"></script>
 <script>
-    // Attach event listeners after elements exist
-    document.getElementById('login-btn').addEventListener('click', login);
-    document.getElementById('signup-btn').addEventListener('click', signup);
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    const decks = {
+        deck1: { buffer: null, source: null, gain: audioCtx.createGain(), isPlaying: false },
+        deck2: { buffer: null, source: null, gain: audioCtx.createGain(), isPlaying: false }
+    };
+
+    // Crossfader Logic
+    const xFader = document.getElementById('xfader');
+    const xGainA = audioCtx.createGain();
+    const xGainB = audioCtx.createGain();
+
+    // Connect Decks to Crossfader Gain Nodes
+    decks.deck1.gain.connect(xGainA);
+    decks.deck2.gain.connect(xGainB);
+    xGainA.connect(audioCtx.destination);
+    xGainB.connect(audioCtx.destination);
+
+    function updateXFade() {
+        const val = parseFloat(xFader.value);
+        xGainA.gain.value = Math.cos(val * 0.5 * Math.PI);
+        xGainB.gain.value = Math.sin(val * 0.5 * Math.PI);
+    }
+    xFader.addEventListener('input', updateXFade);
+    updateXFade();
+
+    // Load File Function
+    async function setupTrack(file, deckKey) {
+        const arrayBuffer = await file.arrayBuffer();
+        decks[deckKey].buffer = await audioCtx.decodeAudioData(arrayBuffer);
+        console.log(deckKey + " loaded");
+    }
+
+    document.getElementById('file1').onchange = (e) => setupTrack(e.target.files[0], 'deck1');
+    document.getElementById('file2').onchange = (e) => setupTrack(e.target.files[0], 'deck2');
+
+    // Play/Stop Function
+    function toggleDeck(deckKey, btnId) {
+        const deck = decks[deckKey];
+        const btn = document.getElementById(btnId);
+
+        if (deck.isPlaying) {
+            deck.source.stop();
+            deck.isPlaying = false;
+            btn.innerText = "PLAY";
+            btn.className = "btn play-btn";
+        } else {
+            if (!deck.buffer) return alert("Load a song first!");
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            deck.source = audioCtx.createBufferSource();
+            deck.source.buffer = deck.buffer;
+            deck.source.loop = true;
+            deck.source.connect(deck.gain);
+            
+            // Sync current UI sliders
+            const pitchVal = document.getElementById(deckKey === 'deck1' ? 'pitch1' : 'pitch2').value;
+            deck.source.playbackRate.value = pitchVal;
+
+            deck.source.start(0);
+            deck.isPlaying = true;
+            btn.innerText = "STOP";
+            btn.className = "btn stop-btn";
+        }
+    }
+
+    document.getElementById('btn1').onclick = () => toggleDeck('deck1', 'btn1');
+    document.getElementById('btn2').onclick = () => toggleDeck('deck2', 'btn2');
+
+    // Real-time Pitch/Vol Control
+    document.getElementById('pitch1').oninput = function() { if(decks.deck1.source) decks.deck1.source.playbackRate.value = this.value; };
+    document.getElementById('pitch2').oninput = function() { if(decks.deck2.source) decks.deck2.source.playbackRate.value = this.value; };
+    document.getElementById('vol1').oninput = function() { decks.deck1.gain.gain.value = this.value; };
+    document.getElementById('vol2').oninput = function() { decks.deck2.gain.gain.value = this.value; };
+
+    // Built-in Synth Samples (Beep)
+    function beep(freq, type) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        g.gain.setValueAtTime(0.5, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+    }
 </script>
+
 </body>
 </html>
